@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "ESP32-ECGMonitor"
+		},
+		{
+			"path": "ESP32-ECGSimulator"
+		}
+	],
+	"settings": {}
+}
