@@ -34,6 +34,7 @@
 #include "Logging.h"
 #include "ISHNE.h"
 #include "MPU6050.h"
+#include "logic_analyzer_sd_capture.h"
 
 // For the configuration file on the AT24C32, located on the RTC board
 #include "i2c_eeprom.h"
@@ -1245,6 +1246,11 @@ void app_main(void)
 
 
     // change the order of initializations - ruling out problems regarding the uSD 
+#if defined(CONFIG_ANALYZER_USE_PORT_ASSIGN) && CONFIG_ANALYZER_USE_PORT_ASSIGN
+    // Start an in-app logic-analyzer capture of the SD SPI pins just before
+    // the mount so the handshake can be inspected (see menuconfig).
+    la_sd_capture_start();
+#endif
 #if SD_DEBUG_INTERACTIVE
     InitSD_SPI_debug();
 #else

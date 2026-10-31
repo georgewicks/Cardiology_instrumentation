@@ -1,0 +1,15 @@
+# Logic analyzer (ok-home/logic_analyzer) — in-app SD SPI self-diagnostics.
+#
+# DISABLED BY DEFAULT so it adds no runtime cost to normal builds.
+# To enable it, set CONFIG_ANALYZER_USE_PORT_ASSIGN=y in `idf.py menuconfig`
+# (menu: "Logic Analyzer Configuration") and set the channel/sample values
+# documented in docs/LOGIC-ANALYZER.md.
+#
+# The PCLK pin is the analyzer's own sample-clock loopback pin and must be
+# otherwise unused (GPIO38 here). These settings are valid regardless of
+# whether the analyzer is enabled, so they are kept here for convenience.
+
+CONFIG_ANALYZER_USE_PORT_ASSIGN=n
+CONFIG_ANALYZER_PCLK_PIN=38
+CONFIG_ANALYZER_USE_LEDC_TIMER_FOR_PCLK=n
+CONFIG_ANALYZER_USE_HI_LEVEL_INTERRUPT=n
