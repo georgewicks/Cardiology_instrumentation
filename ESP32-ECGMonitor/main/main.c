@@ -361,7 +361,13 @@ void    InitSD_SPI_debug(void)
         char line[8] = {0};
         if (fgets(line, sizeof(line), stdin) == NULL) {
             /* No console input available (USB unplugged, or a capture-only
-             * monitor): auto-retry so reseating a wire recovers on its own
+             * monitor). If the card already mounted, proceed with boot;
+             * re-mounting here would fail (already mounted) and leak memory. */
+            if (ret == ESP_OK) {
+                printf("(no console input) mounted OK -- continuing boot.\n");
+                break;
+            }
+            /* Otherwise auto-retry so reseating a wire recovers on its own
              * without requiring a keypress. */
             printf("(no console input) auto-retrying in %d s...\n", SD_RETRY_DELAY_MS / 1000);
             vTaskDelay(pdMS_TO_TICKS(SD_RETRY_DELAY_MS));
