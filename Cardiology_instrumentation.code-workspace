@@ -7,5 +7,9 @@
 			"path": "ESP32-ECGSimulator"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"idf.extensionActivationMode": "always",
+		"idf.currentSetup": "/home/gwicks/.espressif/v6.0.2/esp-idf",
+		"idf.port": "/dev/ttyUSB0"
+	}
 }
